@@ -1,26 +1,38 @@
 import React from "react";
-import { storeActions } from "./store/index";
-import { useSelector, useDispatch } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./components/home";
+import QuestionsList from "./components/questions";
+import QuestionDetail from "./components/questionDetail";
+import RootLayout from "./layout/rootLayout";
+import ErrorPage from "./components/error";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <RootLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+            { path: "/", element: <Home /> },
+            {
+                path: "/questions",
+                element: <QuestionsList />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: "/questions/:questionId",
+                element: <QuestionDetail />,
+                errorElement: <ErrorPage />,
+            },
+        ],
+    },
+]);
 
 const App = () => {
-    const dispatch = useDispatch();
-    const pageNumber = useSelector((state) => state.pageNumber);
-    const isHealth = useSelector((state) => state.isHealth);
-
-    const handleNextPage = () => {
-        dispatch(storeActions.nextPage());
-    };
-    const handlePrevPage = () => {
-        if (pageNumber <= 1) return;
-        dispatch(storeActions.previousPage());
-    };
-
     return (
         <>
-            <p>Page: {pageNumber}</p>
-            <p>isHealth: {isHealth ? "sim" : "nao"}</p>
-            <button onClick={handlePrevPage}>Decrement</button>
-            <button onClick={handleNextPage}>Increment</button>
+            <div className="App">
+                <RouterProvider router={router} />
+            </div>
         </>
     );
 };
