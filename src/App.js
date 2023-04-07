@@ -1,8 +1,12 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/home";
-import QuestionsList from "./components/questions";
-import QuestionDetail from "./components/questionDetail";
+import QuestionsList, {
+    loader as questionsLoader,
+} from "./components/questions";
+import QuestionDetail, {
+    loader as questionDetailLoader,
+} from "./components/questionDetail";
 import RootLayout from "./layout/rootLayout";
 import ErrorPage from "./components/error";
 
@@ -12,16 +16,23 @@ const router = createBrowserRouter([
         element: <RootLayout />,
         errorElement: <ErrorPage />,
         children: [
-            { path: "/", element: <Home /> },
+            { index: true, element: <Home /> },
             {
-                path: "/questions",
-                element: <QuestionsList />,
-                errorElement: <ErrorPage />,
-            },
-            {
-                path: "/questions/:questionId",
-                element: <QuestionDetail />,
-                errorElement: <ErrorPage />,
+                path: "questions",
+                children: [
+                    {
+                        index: true,
+                        element: <QuestionsList />,
+                        loader: questionsLoader,
+                        errorElement: <ErrorPage />,
+                    },
+                    {
+                        path: ":questionId",
+                        element: <QuestionDetail />,
+                        loader: questionDetailLoader,
+                        errorElement: <ErrorPage />,
+                    },
+                ],
             },
         ],
     },
