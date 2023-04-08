@@ -12,6 +12,7 @@ import ErrorPage from "./pages/ErrorPage";
 import NewQuestionPage, {
     action as newQuestionAction,
 } from "./pages/NewQuestionPage";
+import { Container } from "./assets/globalStyles";
 
 const router = createBrowserRouter([
     {
@@ -45,9 +46,9 @@ const router = createBrowserRouter([
 const App = () => {
     return (
         <>
-            <div className="App">
+            <Container>
                 <RouterProvider router={router} />
-            </div>
+            </Container>
         </>
     );
 };
