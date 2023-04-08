@@ -1,6 +1,11 @@
 import React, { useRef } from "react";
-import { storeActions } from "../store/index";
-import { useSelector, useDispatch } from "react-redux";
+import { Button } from "../assets/globalStyles";
+import {
+    QuestionsHeaderContainer,
+    QuestionsHeaderContent,
+    SearchButton,
+    SearchInput,
+} from "../assets/questionsStyles";
 
 const SearchQuestion = () => {
     const inputRef = useRef(null);
@@ -10,22 +15,18 @@ const SearchQuestion = () => {
     };
 
     return (
-        <div>
-            <div className="nav-questions">
-                <input
+        <QuestionsHeaderContainer>
+            <QuestionsHeaderContent>
+                <SearchInput
                     type="text"
                     ref={inputRef}
                     id="name"
                     name="name"
-                    placeholder="Task Title"
+                    placeholder="Filtrar"
                 />
-                <div>
-                    <button type="button" onClick={searchHandler}>
-                        Search
-                    </button>
-                </div>
-            </div>
-        </div>
+                <SearchButton onClick={searchHandler}>Search</SearchButton>
+            </QuestionsHeaderContent>
+        </QuestionsHeaderContainer>
     );
 };
 
