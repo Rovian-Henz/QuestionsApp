@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData, Form } from "react-router-dom";
-import DetailsHeader from "../layout/DetailsHeader";
+import DetailsHeader from "./DetailsHeader";
 import { Title, Button, SubTitle } from "../assets/globalStyles";
 import {
     QuestionContent,

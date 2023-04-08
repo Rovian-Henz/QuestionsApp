@@ -62,7 +62,7 @@ export const ButtonShare = styled.button`
     cursor: pointer;
 `;
 
-export const Loading = styled.div`
+export const Page = styled.div`
     top: 0;
     bottom: 0;
     left: 0;
@@ -76,11 +76,27 @@ export const Loading = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 `;
 
-export const LoadingTitle = styled.h1`
+export const PageTitle = styled.h1`
     font-size: 35px;
     color: #fff;
+`;
+
+export const PageMessage = styled.p`
+    font-size: 30px;
+    color: #fff;
+`;
+
+export const PageButton = styled.button`
+    font-size: 25px;
+    line-height: 30px;
+    color: #ffffff;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
 `;
 
 export const SvgPlusCont = styled.span`

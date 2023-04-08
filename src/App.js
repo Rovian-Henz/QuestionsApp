@@ -7,7 +7,7 @@ import QuestionDetail, {
     loader as questionDetailLoader,
     action as questionDetailAction,
 } from "./pages/QuestionsDetailsPage";
-import RootLayout from "./layout/rootLayout";
+import RootLayout, { loader as healthLoader } from "./layout/rootLayout";
 import ErrorPage from "./pages/ErrorPage";
 import NewQuestionPage, {
     action as newQuestionAction,
@@ -18,6 +18,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
+        loader: healthLoader,
         errorElement: <ErrorPage />,
         children: [
             {

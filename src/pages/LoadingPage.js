@@ -1,17 +1,17 @@
 import React from "react";
-import { LoadingIcon, Loading, LoadingTitle } from "../assets/globalStyles";
+import { LoadingIcon, Page, PageTitle } from "../assets/globalStyles";
 
 const LoadingPage = () => {
     return (
-        <Loading>
+        <Page>
             <LoadingIcon>
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
             </LoadingIcon>
-            <LoadingTitle>LOADING</LoadingTitle>
-        </Loading>
+            <PageTitle>LOADING</PageTitle>
+        </Page>
     );
 };
 
