@@ -5,6 +5,7 @@ import QuestionsPage, {
 } from "./pages/QuestionsPage";
 import QuestionDetail, {
     loader as questionDetailLoader,
+    action as questionDetailAction,
 } from "./pages/QuestionsDetailsPage";
 import RootLayout from "./layout/rootLayout";
 import ErrorPage from "./pages/ErrorPage";
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
                 path: "questions/:questionId",
                 element: <QuestionDetail />,
                 loader: questionDetailLoader,
+                action: questionDetailAction,
                 errorElement: <ErrorPage />,
             },
             {

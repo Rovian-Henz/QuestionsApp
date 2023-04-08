@@ -15,15 +15,30 @@ const QuestionsList = () => {
 
     return (
         <>
-            <ul>
+            <div>
                 {questions.map((question) => (
-                    <li key={question.id}>
-                        <Link to={`questions/${question.id}`}>
-                            Question {question.id} - {question.question}
-                        </Link>
-                    </li>
+                    <Link to={`questions/${question.id}`} key={question.id}>
+                        <div>
+                            <img src="https://dummyimage.com/120x120/000/fff.png&text=question+1+image+(120x120)" />
+                            <div>
+                                <div>
+                                    <h3>{question.question}</h3>
+                                    <div>
+                                        <p>option1</p>
+                                        <p>option2</p>
+                                        <p>option3</p>
+                                        <p>option4</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>Share</p>
+                                    <button>Answers</button>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
                 ))}
-            </ul>
+            </div>
             <button onClick={handleNewQuestion}>Add new Question</button>
         </>
     );
