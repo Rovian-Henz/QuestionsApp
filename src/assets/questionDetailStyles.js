@@ -16,6 +16,8 @@ export const QuestionContainer = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 30px;
+    margin-bottom: 120px;
 `;
 
 export const VoteContent = styled.div`
@@ -103,6 +105,21 @@ export const ResultContainer = styled.div`
     margin-top: 50px;
 `;
 
+export const BackLink = styled.span`
+    padding: 25px 40px;
+    font-size: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    svg {
+        font-size: 50px;
+        path {
+            fill: #fff;
+        }
+    }
+`;
+
 export const ResultList = styled.div`
     display: flex;
     justify-content: space-between;
@@ -135,4 +152,14 @@ export const ResultVotes = styled.span`
 export const ResultName = styled.div`
     font-size: 18px;
     color: #888;
+`;
+
+export const PublishedDate = styled.div`
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
 `;

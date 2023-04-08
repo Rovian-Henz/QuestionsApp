@@ -16,6 +16,7 @@ import {
     ResultItem,
     ResultName,
     ResultVotes,
+    PublishedDate,
 } from "../assets/questionDetailStyles";
 
 import styled from "styled-components";
@@ -42,13 +43,17 @@ const QuestionDetail = () => {
         return acc + value.votes;
     }, 0);
 
+    const date = new Date(question.published_at).toLocaleDateString();
+
     return (
         <>
             <DetailsHeader image={question.image_url} />
             <QuestionContainer>
                 <QuestionContent>
                     <Title>{question.question}</Title>
-                    <p>Publicado em: {question.published_at}</p>
+                    <PublishedDate>
+                        <span>Published:</span> <span>{date}</span>
+                    </PublishedDate>
                     <VoteContent>
                         <Form method="put">
                             <VoteFormContent>

@@ -51,6 +51,15 @@ export const Button = styled.button`
     padding: 5px 13px;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
+`;
+
+export const ButtonShare = styled.button`
+    color: #ffffff;
+    background: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
 `;
 
 export const Loading = styled.div`
@@ -72,6 +81,36 @@ export const Loading = styled.div`
 export const LoadingTitle = styled.h1`
     font-size: 35px;
     color: #fff;
+`;
+
+export const SvgPlusCont = styled.span`
+    display: flex;
+    padding: 0px 10px;
+    z-index: 9999;
+    width: 25px;
+    svg {
+        font-size: 25px;
+        rotate: 45deg;
+        background: linear-gradient(
+            180deg,
+            rgba(175, 110, 235, 1) 0%,
+            rgba(49, 89, 218, 1) 100%
+        );
+        border-radius: 50%;
+        path {
+            fill: #fff;
+        }
+    }
+`;
+
+export const SvgShareCont = styled.span`
+    display: flex;
+    padding: 0px 10px;
+    z-index: 9999;
+    width: 25px;
+    svg {
+        font-size: 25px;
+    }
 `;
 
 const ldsEellipsis1 = keyframes`

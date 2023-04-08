@@ -1,7 +1,14 @@
 import React from "react";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import { SubTitleH3 } from "../assets/globalStyles";
+import { Link, useLoaderData } from "react-router-dom";
+import {
+    SubTitleH3,
+    SvgPlusCont,
+    SvgShareCont,
+    ButtonShare,
+} from "../assets/globalStyles";
 import { QuestionContent } from "../assets/questionDetailStyles";
+import { Plus, Share } from "../assets/icons";
+
 import {
     QuestionsContainer,
     Content,
@@ -17,11 +24,15 @@ import {
 
 const QuestionsList = () => {
     const questions = useLoaderData();
-    const navigate = useNavigate();
 
     if (!questions || questions.length < 1) {
         return <p>{questions.message}</p>;
     }
+
+    const handleShare = (e) => {
+        e.preventDefault();
+        console.log("clicado");
+    };
 
     return (
         <>
@@ -46,7 +57,11 @@ const QuestionsList = () => {
                                 </OptionsList>
                             </ItemContent>
                             <ItemActions>
-                                <span>Share</span>
+                                <ButtonShare onClick={handleShare}>
+                                    <SvgShareCont>
+                                        <Share />
+                                    </SvgShareCont>
+                                </ButtonShare>
                                 <Link to={`questions/${question.id}`}>
                                     <LinkAnswers>Details</LinkAnswers>
                                 </Link>
@@ -55,7 +70,12 @@ const QuestionsList = () => {
                     ))}
                 </Content>
                 <Link to={`questions/new`}>
-                    <NewQuestionLink> + Add new question</NewQuestionLink>
+                    <NewQuestionLink>
+                        <SvgPlusCont>
+                            <Plus />
+                        </SvgPlusCont>
+                        Add new question
+                    </NewQuestionLink>
                 </Link>
             </QuestionsContainer>
         </>

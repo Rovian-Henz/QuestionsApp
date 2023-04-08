@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Button } from "../assets/globalStyles";
+import { Search } from "../assets/icons";
 import {
     QuestionsHeaderContainer,
     QuestionsHeaderContent,
@@ -22,9 +23,11 @@ const SearchQuestion = () => {
                     ref={inputRef}
                     id="name"
                     name="name"
-                    placeholder="Filtrar"
+                    placeholder="Search"
                 />
-                <SearchButton onClick={searchHandler}>Search</SearchButton>
+                <SearchButton onClick={searchHandler}>
+                    <Search />
+                </SearchButton>
             </QuestionsHeaderContent>
         </QuestionsHeaderContainer>
     );

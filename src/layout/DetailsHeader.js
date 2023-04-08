@@ -1,13 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BackLink } from "../assets/questionDetailStyles";
+import { Link } from "react-router-dom";
+import { Back } from "../assets/icons";
 
 const DetailsHeader = ({ image }) => {
-    const navigate = useNavigate();
-    function handleBack() {
-        navigate("..");
-    }
-
     const HeaderQuestion = styled.div`
         background-image: linear-gradient(
                 180deg,
@@ -20,12 +17,18 @@ const DetailsHeader = ({ image }) => {
         width: 100%;
         height: 300px;
         display: block;
+        a {
+            text-decoration: none;
+        }
     `;
 
     return (
         <HeaderQuestion imgUrl={image}>
-            <button onClick={handleBack}> Voltar </button>
-            {/* <img src={image}></img> */}
+            <Link to={".."}>
+                <BackLink>
+                    <Back /> Back to List
+                </BackLink>
+            </Link>
         </HeaderQuestion>
     );
 };

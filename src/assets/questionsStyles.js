@@ -24,15 +24,21 @@ export const QuestionsHeaderContent = styled.div`
 `;
 
 export const SearchButton = styled.button`
-    color: #888;
     background: #fff;
     position: absolute;
     right: 0;
-    font-size: 32px;
     border: none;
-    padding: 6px 15px;
+    padding: 0px 15px;
     cursor: pointer;
     border-radius: 10px;
+    top: 5px;
+    svg {
+        font-size: 35px;
+        rotate: -60deg;
+        path {
+            fill: #888;
+        }
+    }
 `;
 
 export const SearchInput = styled.input`
@@ -96,6 +102,7 @@ export const ItemActions = styled.div`
     gap: 10px;
     justify-content: space-between;
     padding: 15px 25px 15px 0;
+    align-items: flex-end;
     a {
         text-decoration: none;
     }
@@ -103,8 +110,8 @@ export const ItemActions = styled.div`
 
 export const OptionsList = styled.div`
     display: flex;
-    gap: 10px;
-    justify-content: space-around;
+    gap: 22px;
+    justify-content: flex-start;
 `;
 
 export const OptionsItem = styled.div`
@@ -134,4 +141,7 @@ export const LinkAnswers = styled.span`
 export const NewQuestionLink = styled.span`
     font-size: 24px;
     color: rgb(136, 136, 136);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
