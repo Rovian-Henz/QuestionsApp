@@ -1,14 +1,16 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./components/home";
-import QuestionsList, {
+import QuestionsPage, {
     loader as questionsLoader,
-} from "./components/questions";
+} from "./pages/QuestionsPage";
 import QuestionDetail, {
     loader as questionDetailLoader,
-} from "./components/questionDetail";
+} from "./pages/QuestionsDetailsPage";
 import RootLayout from "./layout/rootLayout";
-import ErrorPage from "./components/error";
+import ErrorPage from "./pages/ErrorPage";
+import NewQuestionPage, {
+    action as newQuestionAction,
+} from "./pages/NewQuestionPage";
 
 const router = createBrowserRouter([
     {
@@ -16,23 +18,23 @@ const router = createBrowserRouter([
         element: <RootLayout />,
         errorElement: <ErrorPage />,
         children: [
-            { index: true, element: <Home /> },
             {
-                path: "questions",
-                children: [
-                    {
-                        index: true,
-                        element: <QuestionsList />,
-                        loader: questionsLoader,
-                        errorElement: <ErrorPage />,
-                    },
-                    {
-                        path: ":questionId",
-                        element: <QuestionDetail />,
-                        loader: questionDetailLoader,
-                        errorElement: <ErrorPage />,
-                    },
-                ],
+                index: true,
+                element: <QuestionsPage />,
+                loader: questionsLoader,
+            },
+            {
+                path: "questions/:questionId",
+                element: <QuestionDetail />,
+                loader: questionDetailLoader,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: "questions/new",
+                element: <NewQuestionPage />,
+                // loader: questionDetailLoader,
+                action: newQuestionAction,
+                errorElement: <ErrorPage />,
             },
         ],
     },

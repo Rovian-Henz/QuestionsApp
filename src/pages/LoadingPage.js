@@ -1,6 +1,6 @@
 import React from "react";
 const LoadingPage = () => {
-    return <>Loading Page 123</>;
+    return <h1>WE ARE LOADING YOUR PAGE</h1>;
 };
 
 export default LoadingPage;

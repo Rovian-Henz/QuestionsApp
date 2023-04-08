@@ -1,16 +1,15 @@
 import React from "react";
 import { Outlet, useNavigation } from "react-router-dom";
-import LoadingPage from "../components/loadingPage";
+import LoadingPage from "../pages/LoadingPage";
 
 const RootLayout = () => {
     const navigation = useNavigation();
 
     return (
         <>
-            <h1>Root</h1>
             <main>
                 {navigation.state === "loading" && <LoadingPage />}
-                <Outlet />
+                {navigation.state !== "loading" && <Outlet />}
             </main>
         </>
     );
