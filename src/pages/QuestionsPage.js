@@ -16,7 +16,7 @@ export default QuestionsPage;
 
 export const loader = async ({ request, params }) => {
     const response = await fetch(
-        "https://private-anon-993ce4a9a9-blissrecruitmentapi.apiary-mock.com/questions?limit=20&offset=10"
+        `https://private-anon-993ce4a9a9-blissrecruitmentapi.apiary-mock.com/questions?limit=20&offset=10`
     );
 
     if (!response.ok) {
@@ -30,6 +30,22 @@ export async function action({ request, params }) {
     const id = params.questionId;
 
     const data = await request.formData();
+    const intent = data.get("intent");
+
+    if (intent && intent == "share") {
+        const destination_email = data.get("email");
+
+        const response = await fetch(
+            `https://private-anon-1f23fc696b-blissrecruitmentapi.apiary-mock.com/share?destination_email=${destination_email}&content_url=${request.url}`,
+            { method: "POST" }
+        );
+
+        if (!response.ok) {
+            throw json({ message: "Could not share" }, { status: 500 });
+        }
+        return response;
+    }
+
     console.log("data", data);
     console.log("request", request);
     console.log("params", params);
