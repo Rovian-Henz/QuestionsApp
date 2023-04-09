@@ -1,13 +1,13 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLoaderData, useActionData } from "react-router-dom";
 import {
     SubTitleH3,
-    SvgPlusCont,
     SvgShareCont,
     ButtonShare,
+    LoadingQuestions,
 } from "../assets/globalStyles";
 import { QuestionContent } from "../assets/questionDetailStyles";
-import { Plus, Share } from "../assets/icons";
+import { Loading, Share } from "../assets/icons";
 
 import {
     QuestionsContainer,
@@ -19,15 +19,19 @@ import {
     OptionsItem,
     OptionsItemSpan,
     LinkAnswers,
-    NewQuestionLink,
 } from "../assets/questionsStyles";
 
 const QuestionsList = () => {
     const questions = useLoaderData();
+    const data = useActionData();
+    const [isLoading, setIsLoading] = useState(false);
 
     if (!questions || questions.length < 1) {
         return <p>{questions.message}</p>;
     }
+
+    console.log("data", data);
+    console.log("questions", questions);
 
     const handleShare = (e) => {
         e.preventDefault();
@@ -68,15 +72,14 @@ const QuestionsList = () => {
                             </ItemActions>
                         </Item>
                     ))}
+                    {isLoading && (
+                        <LoadingQuestions>
+                            <div>
+                                <Loading />
+                            </div>
+                        </LoadingQuestions>
+                    )}
                 </Content>
-                <Link to={`questions/new`}>
-                    <NewQuestionLink>
-                        <SvgPlusCont>
-                            <Plus />
-                        </SvgPlusCont>
-                        Add new question
-                    </NewQuestionLink>
-                </Link>
             </QuestionsContainer>
         </>
     );

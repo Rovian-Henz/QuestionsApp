@@ -1,13 +1,15 @@
 import React, { useRef } from "react";
-import { Button } from "../assets/globalStyles";
+import { SvgPlusCont } from "../assets/globalStyles";
 import { Search } from "../assets/icons";
 import {
     QuestionsHeaderContainer,
     QuestionsHeaderContent,
     SearchButton,
     SearchInput,
+    NewQuestionLink,
 } from "../assets/questionsStyles";
-import { Form } from "react-router-dom";
+import { Plus } from "../assets/icons";
+import { Form, Link } from "react-router-dom";
 
 const SearchQuestion = () => {
     const inputRef = useRef(null);
@@ -19,7 +21,7 @@ const SearchQuestion = () => {
     return (
         <QuestionsHeaderContainer>
             <QuestionsHeaderContent>
-                <Form>
+                <Form method="PUT">
                     <SearchInput
                         type="text"
                         ref={inputRef}
@@ -32,6 +34,14 @@ const SearchQuestion = () => {
                     </SearchButton>
                 </Form>
             </QuestionsHeaderContent>
+            <Link to={`questions/new`}>
+                <NewQuestionLink>
+                    <SvgPlusCont>
+                        <Plus />
+                    </SvgPlusCont>
+                    Add new question
+                </NewQuestionLink>
+            </Link>
         </QuestionsHeaderContainer>
     );
 };

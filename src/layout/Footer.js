@@ -4,7 +4,7 @@ import { FooterStyle } from "../assets/globalStyles";
 const Footer = () => {
     return (
         <FooterStyle>
-            <span>Created By: Rovian Henz</span>
+            <span>Created By Rovian Henz</span>
         </FooterStyle>
     );
 };

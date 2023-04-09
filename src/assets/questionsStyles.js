@@ -11,7 +11,11 @@ export const QuestionsHeaderContainer = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 170px 20px;
+    padding: 150px 20px;
+    gap: 30px;
+    a {
+        text-decoration: none;
+    }
 `;
 
 export const QuestionsHeaderContent = styled.div`
@@ -144,7 +148,7 @@ export const LinkAnswers = styled.span`
 
 export const NewQuestionLink = styled.span`
     font-size: 24px;
-    color: rgb(136, 136, 136);
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -107,11 +107,6 @@ export const SvgPlusCont = styled.span`
     svg {
         font-size: 25px;
         rotate: 45deg;
-        background: linear-gradient(
-            180deg,
-            rgba(175, 110, 235, 1) 0%,
-            rgba(49, 89, 218, 1) 100%
-        );
         border-radius: 50%;
         path {
             fill: #fff;
@@ -190,9 +185,35 @@ export const FooterStyle = styled.div`
     display: flex;
     width: 100%;
     justify-content: center;
-    background: #000;
+    background: linear-gradient(rgb(175, 110, 235) 0%, rgb(49, 89, 218) 100%);
     span {
         color: #fff;
+        font-size: 16px;
         padding: 25px 10px;
+    }
+`;
+
+const rotate = keyframes`
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+    `;
+
+export const LoadingQuestions = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    div {
+        display: flex;
+        position: relative;
+        height: 40px;
+        width: 40px;
+        animation: ${rotate} 1s infinite;
+        animation-timing-function: linear;
+        svg {
+            font-size: 40px;
+            path {
+                fill: rgb(49, 89, 218);
+            }
+        }
     }
 `;
