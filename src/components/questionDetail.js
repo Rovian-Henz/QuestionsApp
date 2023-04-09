@@ -35,12 +35,12 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const QuestionDetail = () => {
-    const [shareItem, setShareItem] = useState(false);
     const question = useLoaderData();
     const action = useActionData();
     const dispatch = useDispatch();
     const shareInput = useRef(null);
     const submit = useSubmit();
+    const [shareItem, setShareItem] = useState(false);
     const [selected, setSelected] = useState("");
     const [isMessageShown, setIsMessageShown] = useState(false);
 
@@ -92,11 +92,12 @@ const QuestionDetail = () => {
     const handleShare = (e) => {
         e.preventDefault();
         setIsMessageShown(false);
-        const emailRegex = new RegExp("^([a-z0-9]{5,})$");
 
         if (
             !shareInput.current.value ||
-            !emailRegex.test(shareInput.current.value)
+            !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+                shareInput.current.value
+            )
         ) {
             dispatch(
                 storeActions.setInfoScreen(["error", "Type a valid email"])
@@ -109,7 +110,6 @@ const QuestionDetail = () => {
         submit(
             {
                 email: shareInput.current.value,
-                url: "http://",
                 intent: "share",
             },
             { method: "POST" }

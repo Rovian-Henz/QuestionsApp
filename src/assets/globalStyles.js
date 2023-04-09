@@ -254,6 +254,10 @@ export const ShareComponent = styled.div`
     padding: 15px;
     border: none;
     bottom: 20px;
+    &.questionsShare {
+        padding: 5px 15px 12px 15px;
+        bottom: -10px;
+    }
 `;
 
 export const CloseShareBtn = styled.button`

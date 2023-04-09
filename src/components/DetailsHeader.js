@@ -24,7 +24,7 @@ const DetailsHeader = ({ image }) => {
 
     return (
         <HeaderQuestion imgUrl={image}>
-            <Link to={".."}>
+            <Link to={"/questions"}>
                 <BackLink>
                     <Back /> Back to List
                 </BackLink>

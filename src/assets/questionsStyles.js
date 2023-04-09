@@ -155,3 +155,19 @@ export const NewQuestionLink = styled.span`
     justify-content: center;
     align-items: center;
 `;
+
+export const SearchActions = styled.div`
+    display: grid;
+    width: 920px;
+    grid-template-columns: 1fr 40px;
+    position: relative;
+`;
+
+export const SearchShare = styled.div`
+    float: right;
+    & > button svg {
+        path {
+            fill: #fff;
+        }
+    }
+`;

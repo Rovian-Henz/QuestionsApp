@@ -48,7 +48,7 @@ const QuestionsList = () => {
                                 </OptionsList>
                             </ItemContent>
                             <ItemActions>
-                                <Link to={`questions/${question.id}`}>
+                                <Link to={`${question.id}`}>
                                     <LinkAnswers>Details</LinkAnswers>
                                 </Link>
                             </ItemActions>
