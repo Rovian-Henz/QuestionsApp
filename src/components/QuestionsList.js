@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLoaderData, useActionData } from "react-router-dom";
-import {
-    SubTitleH3,
-    SvgShareCont,
-    ButtonShare,
-    LoadingQuestions,
-} from "../assets/globalStyles";
+import { SubTitleH3, LoadingQuestions } from "../assets/globalStyles";
 import { QuestionContent } from "../assets/questionDetailStyles";
 import { Loading, Share } from "../assets/icons";
 
@@ -30,14 +25,6 @@ const QuestionsList = () => {
         return <p>{questions.message}</p>;
     }
 
-    console.log("data", data);
-    console.log("questions", questions);
-
-    const handleShare = (e) => {
-        e.preventDefault();
-        console.log("clicado");
-    };
-
     return (
         <>
             <QuestionsContainer>
@@ -61,11 +48,6 @@ const QuestionsList = () => {
                                 </OptionsList>
                             </ItemContent>
                             <ItemActions>
-                                <ButtonShare onClick={handleShare}>
-                                    <SvgShareCont>
-                                        <Share />
-                                    </SvgShareCont>
-                                </ButtonShare>
                                 <Link to={`questions/${question.id}`}>
                                     <LinkAnswers>Details</LinkAnswers>
                                 </Link>

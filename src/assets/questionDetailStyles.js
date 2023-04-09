@@ -159,7 +159,16 @@ export const PublishedDate = styled.div`
     color: #888;
     margin-bottom: 40px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: flex-start;
+`;
+
+export const TitleContainer = styled.div`
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 45px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
 `;

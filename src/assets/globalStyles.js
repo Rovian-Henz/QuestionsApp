@@ -4,6 +4,10 @@ export const Main = styled.main`
     display: block;
     float: left;
     width: 100%;
+    box-sizing: border-box;
+    * {
+        box-sizing: border-box;
+    }
 `;
 
 export const Container = styled.div`
@@ -14,6 +18,10 @@ export const Container = styled.div`
 
     & h1 {
         font-family: "Lato", sans-serif;
+    }
+    box-sizing: border-box;
+    * {
+        box-sizing: border-box;
     }
 `;
 
@@ -101,7 +109,6 @@ export const PageButton = styled.button`
 
 export const SvgPlusCont = styled.span`
     display: flex;
-    padding: 0px 10px;
     z-index: 9999;
     width: 25px;
     svg {
@@ -116,11 +123,10 @@ export const SvgPlusCont = styled.span`
 
 export const SvgShareCont = styled.span`
     display: flex;
-    padding: 0px 10px;
     z-index: 9999;
-    width: 25px;
+    width: 35px;
     svg {
-        font-size: 25px;
+        font-size: 35px;
     }
 `;
 
@@ -216,4 +222,71 @@ export const LoadingQuestions = styled.div`
             }
         }
     }
+`;
+
+export const InfoMessage = styled.div`
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    div {
+        color: #fff;
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+        font-size: 20px;
+        &.error {
+            background: #dc3545;
+        }
+        &.success {
+            background: #28a745;
+        }
+    }
+`;
+
+export const ShareComponent = styled.div`
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    right: -215px;
+    width: 215px;
+    background: rgb(255, 255, 255);
+    padding: 15px;
+    border: none;
+    bottom: 20px;
+`;
+
+export const CloseShareBtn = styled.button`
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background: #fff;
+    border: none;
+    svg {
+        font-size: 20px;
+    }
+`;
+
+export const SendShareBtn = styled.button`
+    display: flex;
+    cursor: pointer;
+    background: #fff;
+    border: none;
+`;
+
+export const InputShare = styled.input`
+    width: 160px;
+    font-size: 20px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    padding: 3px 5px;
+`;
+
+export const InputContent = styled.div`
+    display: flex;
+    padding: 0;
+    padding-top: 8px;
 `;

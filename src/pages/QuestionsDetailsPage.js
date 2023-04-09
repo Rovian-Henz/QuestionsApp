@@ -31,17 +31,43 @@ export async function loader({ params }) {
 
 export async function action({ request, params }) {
     const id = params.questionId;
-
     const data = await request.formData();
-    console.log("data", data);
-    console.log("request", request);
-    console.log("params", params);
+
+    const intent = data.get("intent");
+
+    if (intent && intent == "share") {
+        const destination_email = data.get("email");
+
+        const response = await fetch(
+            `https://private-anon-1f23fc696b-blissrecruitmentapi.apiary-mock.com/share?destination_email=${destination_email}&content_url=${request.url}`,
+            { method: "POST" }
+        );
+
+        if (!response.ok) {
+            throw json({ message: "Could not share" }, { status: 500 });
+        }
+        return response;
+    }
+
+    const choices = data.get("choices");
+    const selected = data.get("selected");
+
+    let choicesObj = choices.split(",").map((item) => {
+        return {
+            choice: item,
+            votes: selected === item ? 1 : 0,
+        };
+    });
 
     const questionData = {
-        choices: [data.get("choices")],
+        id: id,
+        question: data.get("question"),
+        image_url: data.get("image_url"),
+        thumb_url: data.get("thumb_url"),
+        published_at: data.get("published_at"),
+        choices: choicesObj,
     };
 
-    console.log("questionData", questionData);
     const response = await fetch(
         `https://private-anon-1f23fc696b-blissrecruitmentapi.apiary-mock.com/questions/${id}`,
         {
@@ -56,4 +82,5 @@ export async function action({ request, params }) {
     if (!response.ok) {
         throw json({ message: "Could not save question" }, { status: 500 });
     }
+    return response;
 }

@@ -108,9 +108,10 @@ export const ItemActions = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 15px 25px 15px 0;
     align-items: flex-end;
+    position: relative;
     a {
         text-decoration: none;
     }
@@ -150,6 +151,7 @@ export const NewQuestionLink = styled.span`
     font-size: 24px;
     color: #fff;
     display: flex;
+    gap: 5px;
     justify-content: center;
     align-items: center;
 `;

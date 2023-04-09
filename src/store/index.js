@@ -1,6 +1,13 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const initialState = { isHealth: true, pageNumber: 1 };
+const initialState = {
+    isHealth: true,
+    pageNumber: 1,
+    questions: [],
+    showInfoScreen: false,
+    infoScreenMessage: "There was an error",
+    typeInfo: "error",
+};
 
 const storeSlice = createSlice({
     name: "storeSlice",
@@ -12,8 +19,20 @@ const storeSlice = createSlice({
         nextPage(state) {
             state.pageNumber++;
         },
-        previousPage(state) {
-            state.pageNumber--;
+        addQuestions(state, action) {
+            state.questions.push(...action.payload);
+        },
+        setInfoScreen(state, action) {
+            state.typeInfo = action.payload[0];
+            state.infoScreenMessage = action.payload[1];
+        },
+        showInfoScreen(state) {
+            state.showInfoScreen = true;
+        },
+        hideInfoScreen(state) {
+            state.showInfoScreen = false;
+            state.typeInfo = "error";
+            state.infoScreenMessage = "There was an error";
         },
     },
 });
