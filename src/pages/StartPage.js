@@ -3,8 +3,9 @@ import { Outlet, useNavigation, json, useLoaderData } from "react-router-dom";
 import LoadingPage from "../pages/LoadingPage";
 import { Main } from "../assets/globalStyles";
 import ErrorPage from "../pages/ErrorPage";
+import Footer from "../layout/Footer";
 
-const RootLayout = () => {
+const StartPage = () => {
     const navigation = useNavigation();
     const health = useLoaderData();
 
@@ -25,11 +26,12 @@ const RootLayout = () => {
                     <Outlet />
                 )}
             </Main>
+            <Footer />
         </>
     );
 };
 
-export default RootLayout;
+export default StartPage;
 
 export const loader = async () => {
     const response = await fetch(

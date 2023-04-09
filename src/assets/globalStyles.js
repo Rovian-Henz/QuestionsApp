@@ -185,3 +185,14 @@ export const LoadingIcon = styled.div`
         animation: ${ldsEellipsis3} 0.6s infinite;
     }
 `;
+
+export const FooterStyle = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background: #000;
+    span {
+        color: #fff;
+        padding: 25px 10px;
+    }
+`;
