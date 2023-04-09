@@ -21,6 +21,9 @@ export const QuestionsHeaderContent = styled.div`
     width: 100%;
     max-width: 920px;
     position: relative;
+    form {
+        display: flex;
+    }
 `;
 
 export const SearchButton = styled.button`
@@ -31,7 +34,7 @@ export const SearchButton = styled.button`
     padding: 0px 15px;
     cursor: pointer;
     border-radius: 10px;
-    top: 5px;
+    top: 6px;
     svg {
         font-size: 35px;
         rotate: -60deg;
@@ -42,12 +45,13 @@ export const SearchButton = styled.button`
 `;
 
 export const SearchInput = styled.input`
-    padding: 6px 15px;
+    padding: 9px 15px;
     color: #888;
     border: none;
-    font-size: 32px;
+    font-size: 28px;
     outline: none;
     border-radius: 10px;
+    width: 100%;
 `;
 
 export const QuestionsContainer = styled.section`

@@ -7,6 +7,7 @@ import {
     SearchButton,
     SearchInput,
 } from "../assets/questionsStyles";
+import { Form } from "react-router-dom";
 
 const SearchQuestion = () => {
     const inputRef = useRef(null);
@@ -18,16 +19,18 @@ const SearchQuestion = () => {
     return (
         <QuestionsHeaderContainer>
             <QuestionsHeaderContent>
-                <SearchInput
-                    type="text"
-                    ref={inputRef}
-                    id="name"
-                    name="name"
-                    placeholder="Search"
-                />
-                <SearchButton onClick={searchHandler}>
-                    <Search />
-                </SearchButton>
+                <Form>
+                    <SearchInput
+                        type="text"
+                        ref={inputRef}
+                        id="name"
+                        name="name"
+                        placeholder="Search"
+                    />
+                    <SearchButton>
+                        <Search />
+                    </SearchButton>
+                </Form>
             </QuestionsHeaderContent>
         </QuestionsHeaderContainer>
     );

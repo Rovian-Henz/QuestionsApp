@@ -55,7 +55,7 @@ const QuestionDetail = () => {
                         <span>Published:</span> <span>{date}</span>
                     </PublishedDate>
                     <VoteContent>
-                        <Form method="put">
+                        <Form method="PUT">
                             <VoteFormContent>
                                 <VoteItems>
                                     {question.choices.map((choice, idx) => (
