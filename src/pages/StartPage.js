@@ -1,5 +1,13 @@
-import React from "react";
-import { Outlet, useNavigation, json, useLoaderData } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+    Outlet,
+    useNavigation,
+    json,
+    useLoaderData,
+    useNavigate,
+    useLocation,
+} from "react-router-dom";
+import useNetwork from "../hooks/useNetwork";
 import LoadingPage from "../pages/LoadingPage";
 import { Main } from "../assets/globalStyles";
 import ErrorPage from "../pages/ErrorPage";
@@ -8,23 +16,40 @@ import Footer from "../layout/Footer";
 const StartPage = () => {
     const navigation = useNavigation();
     const health = useLoaderData();
+    const networkState = useNetwork();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    console.log("location", location);
+    useEffect(() => {
+        if (location.pathname === "/" || location.pathname === "") {
+            return navigate("/questions");
+        }
+    }, []);
 
     return (
         <>
             <Main>
-                {health.status !== "OK" && (
+                {!networkState.online && (
+                    <ErrorPage
+                        message={"Connect to the internet"}
+                        title={"You are offline"}
+                    />
+                )}
+
+                {networkState.online && health.status !== "OK" && (
                     <ErrorPage
                         button={"Try Again"}
                         message={"Wait a moment and"}
                         title={"Server not Health"}
                     />
                 )}
-                {health.status === "OK" && navigation.state === "loading" && (
-                    <LoadingPage />
-                )}
-                {health.status === "OK" && navigation.state !== "loading" && (
-                    <Outlet />
-                )}
+                {networkState.online &&
+                    health.status === "OK" &&
+                    navigation.state === "loading" && <LoadingPage />}
+                {networkState.online &&
+                    health.status === "OK" &&
+                    navigation.state !== "loading" && <Outlet />}
             </Main>
             <Footer />
         </>
