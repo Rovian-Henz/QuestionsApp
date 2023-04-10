@@ -84,8 +84,8 @@ const SearchQuestion = () => {
                 <SearchInput
                     type="text"
                     ref={inputRef}
-                    id="name"
-                    name="name"
+                    id="search"
+                    name="search"
                     placeholder="Search"
                 />
                 <SearchButton onClick={searchHandler}>
@@ -93,7 +93,7 @@ const SearchQuestion = () => {
                 </SearchButton>
             </QuestionsHeaderContent>
             <SearchActions>
-                <Link to={`questions/new`}>
+                <Link to={`/questions/new`}>
                     <NewQuestionLink>
                         <SvgPlusCont>
                             <Plus />

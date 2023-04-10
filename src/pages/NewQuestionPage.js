@@ -1,16 +1,22 @@
 import React from "react";
 import { json, redirect } from "react-router-dom";
 import NewQuestionForm from "../components/NewQuestionForm";
+import HeaderNewQuestion from "../components/NewQuestionHeader";
+import { NewQuestionPageStyle } from "../assets/questionNewStyles";
 
 const NewQuestionPage = () => {
-    return <NewQuestionForm />;
+    return (
+        <NewQuestionPageStyle>
+            <HeaderNewQuestion />
+            <NewQuestionForm />
+        </NewQuestionPageStyle>
+    );
 };
 
 export default NewQuestionPage;
 
-export const action = async ({ request, params }) => {
+export async function action({ request, params }) {
     const data = await request.formData();
-    console.log("data", data);
     const questionData = {
         question: data.get("question"),
         image_url: data.get("image_url"),
@@ -23,7 +29,6 @@ export const action = async ({ request, params }) => {
         ],
     };
 
-    console.log("questionData", questionData);
     const response = await fetch(
         "https://private-anon-1f23fc696b-blissrecruitmentapi.apiary-mock.com/questions",
         {
@@ -39,5 +44,5 @@ export const action = async ({ request, params }) => {
         throw json({ message: "Could not save question" }, { status: 500 });
     }
 
-    return redirect("/");
-};
+    return redirect("/questions");
+}

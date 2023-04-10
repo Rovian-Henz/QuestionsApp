@@ -15,11 +15,15 @@ export const Container = styled.div`
 
     font-weight: 400;
     font-family: "Lato", sans-serif;
+    box-sizing: border-box;
+    &,
+    & main {
+        min-height: calc(100vh - 69px);
+    }
 
     & h1 {
         font-family: "Lato", sans-serif;
     }
-    box-sizing: border-box;
     * {
         box-sizing: border-box;
     }
