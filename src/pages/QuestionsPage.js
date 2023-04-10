@@ -15,22 +15,43 @@ const QuestionsPage = () => {
 export default QuestionsPage;
 
 export const loader = async ({ request, params }) => {
-    const response = await fetch(
-        `https://private-anon-993ce4a9a9-blissrecruitmentapi.apiary-mock.com/questions?limit=10&offset=0`
-    );
+    const url = new URL(request.url);
+    const searchTerm = url.searchParams.get("filter");
+    const limit = url.searchParams.get("limit") || 10;
+    const offSet = url.searchParams.get("offset") || 0;
 
-    if (!response.ok) {
-        throw json({ message: "Could not fetch questions" }, { status: 500 });
+    if (searchTerm) {
+        const response = await fetch(
+            `https://private-anon-993ce4a9a9-blissrecruitmentapi.apiary-mock.com/questions?limit=${limit}&offset=${offSet}&filter=${searchTerm}`
+        );
+        if (!response.ok) {
+            throw json(
+                { message: "Could not fetch questions" },
+                { status: 500 }
+            );
+        } else {
+            return response;
+        }
     } else {
-        return response;
+        const response = await fetch(
+            `https://private-anon-993ce4a9a9-blissrecruitmentapi.apiary-mock.com/questions?limit=${limit}&offset=${offSet}`
+        );
+        if (!response.ok) {
+            throw json(
+                { message: "Could not fetch questions" },
+                { status: 500 }
+            );
+        } else {
+            return response;
+        }
     }
 };
 
 export async function action({ request, params }) {
-    const id = params.questionId;
-
     const data = await request.formData();
     const intent = data.get("intent");
+
+    console.log("INTENT", intent);
 
     if (intent && intent == "fetch") {
         const offset = data.get("page");

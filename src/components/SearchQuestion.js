@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     SvgPlusCont,
     SvgShareCont,
@@ -19,26 +19,35 @@ import {
     SearchShare,
 } from "../assets/questionsStyles";
 import { Share, Send, Plus } from "../assets/icons";
-import { Form, Link, useSubmit } from "react-router-dom";
+import { Link, useSubmit, useSearchParams } from "react-router-dom";
 import { storeActions } from "../store/index";
 import { useDispatch } from "react-redux";
 
 const SearchQuestion = () => {
     const [shareItem, setShareItem] = useState(false);
-    const [selected, setSelected] = useState("");
-    const [isMessageShown, setIsMessageShown] = useState(false);
     const dispatch = useDispatch();
     const submit = useSubmit();
     const shareInput = useRef(null);
     const inputRef = useRef(null);
+    const [currentQueryParameters, setSearchParams] = useSearchParams();
+    const newQueryParameters = new URLSearchParams();
 
-    const searchHandler = () => {
-        console.log("inputRef.current.value", inputRef.current.value);
+    const searchHandler = (event) => {
+        newQueryParameters.set("filter", inputRef.current.value);
+        setSearchParams(newQueryParameters);
+        submit({ filter: inputRef.current.value }, { method: "GET" });
     };
+
+    useEffect(() => {
+        inputRef.current.focus();
+        const currentFilter = currentQueryParameters.get("filter");
+        if (currentFilter) {
+            inputRef.current.value = currentFilter;
+        }
+    }, []);
 
     const handleShare = (e) => {
         e.preventDefault();
-        setIsMessageShown(false);
         if (
             !shareInput.current.value ||
             !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
@@ -70,18 +79,16 @@ const SearchQuestion = () => {
     return (
         <QuestionsHeaderContainer>
             <QuestionsHeaderContent>
-                <Form method="PUT">
-                    <SearchInput
-                        type="text"
-                        ref={inputRef}
-                        id="name"
-                        name="name"
-                        placeholder="Search"
-                    />
-                    <SearchButton>
-                        <Search />
-                    </SearchButton>
-                </Form>
+                <SearchInput
+                    type="text"
+                    ref={inputRef}
+                    id="name"
+                    name="name"
+                    placeholder="Search"
+                />
+                <SearchButton onClick={searchHandler}>
+                    <Search />
+                </SearchButton>
             </QuestionsHeaderContent>
             <SearchActions>
                 <Link to={`questions/new`}>
