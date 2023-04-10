@@ -12,10 +12,13 @@ import {
     ErrorContainer,
 } from "../assets/questionNewStyles";
 import { Title } from "../assets/globalStyles";
+import { storeActions } from "../store/index";
+import { useDispatch } from "react-redux";
 
 const NewQuestionForm = () => {
     const navigate = useNavigate();
     const submit = useSubmit();
+    const dispatch = useDispatch();
     const questionRef = useRef();
     const image_urlRef = useRef();
     const thumb_urlRef = useRef();
@@ -62,6 +65,13 @@ const NewQuestionForm = () => {
 
         if (errors.length > 0) {
             setFormErrors(errors);
+            dispatch(
+                storeActions.setInfoScreen([
+                    "error",
+                    "Fix the errors and try again",
+                ])
+            );
+            dispatch(storeActions.showInfoScreen());
             return true;
         }
 
@@ -71,7 +81,8 @@ const NewQuestionForm = () => {
     function handleSubmit() {
         setFormErrors([]);
         if (validateErrors()) return;
-
+        dispatch(storeActions.setInfoScreen(["success", "Question sent"]));
+        dispatch(storeActions.showInfoScreen());
         submit(
             {
                 question: questionRef.current.value,
