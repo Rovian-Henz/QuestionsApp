@@ -51,25 +51,6 @@ export async function action({ request, params }) {
     const data = await request.formData();
     const intent = data.get("intent");
 
-    console.log("INTENT", intent);
-
-    if (intent && intent == "fetch") {
-        const offset = data.get("page");
-        const limit = 10;
-
-        const response = await fetch(
-            `https://private-anon-993ce4a9a9-blissrecruitmentapi.apiary-mock.com/questions?limit=${limit}&offset=${offset}`
-        );
-
-        if (!response.ok) {
-            throw json(
-                { message: "Could not fetch questions" },
-                { status: 500 }
-            );
-        } else {
-            return response;
-        }
-    }
     if (intent && intent == "share") {
         const destination_email = data.get("email");
 

@@ -1,11 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {
-    Link,
-    useLoaderData,
-    useActionData,
-    useSubmit,
-} from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { SubTitleH3, LoadingQuestions } from "../assets/globalStyles";
 import { QuestionContent } from "../assets/questionDetailStyles";
 import { Loading } from "../assets/icons";
@@ -26,11 +21,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 const QuestionsList = () => {
     const questions = useLoaderData();
-    const data = useActionData();
     const offSet = useSelector((state) => state.offSet);
     const totalQuestions = useSelector((state) => state.questions);
+    const search = useSelector((state) => state.search);
     const [addedNewData, setAddNewData] = useState(false);
-    const submit = useSubmit();
+    const [currentQueryParameters, setSearchParams] = useSearchParams();
+    const newQueryParameters = new URLSearchParams();
     const dispatch = useDispatch();
 
     if (!questions || questions.length < 1) {
@@ -38,27 +34,27 @@ const QuestionsList = () => {
     }
 
     useEffect(() => {
-        if (!data) {
-            dispatch(storeActions.addQuestions(questions));
-        }
-    }, []);
-
-    if (data && data.length > 0 && !addedNewData) {
-        console.log("data leng", data);
-        console.log("totalQuestions", totalQuestions);
-        setAddNewData(true);
-    }
+        dispatch(storeActions.addQuestions(questions));
+    }, [questions]);
 
     useEffect(() => {
-        if (data && data.length > 0 && addedNewData) {
-            dispatch(storeActions.addQuestions(data));
+        if (addedNewData) {
+            dispatch(storeActions.changeOffSet());
         }
     }, [addedNewData]);
 
+    useEffect(() => {
+        if (offSet > 0 && addedNewData === true) {
+            setAddNewData(false);
+            newQueryParameters.set("limit", 10);
+            newQueryParameters.set("offset", offSet);
+            newQueryParameters.set("filter", search);
+            setSearchParams(newQueryParameters);
+        }
+    }, [offSet]);
+
     const loadMore = () => {
-        setAddNewData(false);
-        dispatch(storeActions.changeOffSet());
-        submit({ intent: "fetch", page: offSet }, { method: "POST" });
+        setAddNewData(true);
     };
 
     return (

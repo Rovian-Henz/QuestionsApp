@@ -7,7 +7,8 @@ const initialState = {
     showInfoScreen: false,
     infoScreenMessage: "There was an error",
     typeInfo: "error",
-    offSet: 10,
+    offSet: 0,
+    search: "",
 };
 
 const storeSlice = createSlice({
@@ -37,6 +38,11 @@ const storeSlice = createSlice({
         },
         changeOffSet(state) {
             state.offSet = state.offSet + 10;
+        },
+        changeSearch(state, action) {
+            state.offSet = 0;
+            state.questions = [];
+            state.search = action.payload;
         },
     },
 });

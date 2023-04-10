@@ -21,7 +21,7 @@ import {
 import { Share, Send, Plus } from "../assets/icons";
 import { Link, useSubmit, useSearchParams } from "react-router-dom";
 import { storeActions } from "../store/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const SearchQuestion = () => {
     const [shareItem, setShareItem] = useState(false);
@@ -32,10 +32,12 @@ const SearchQuestion = () => {
     const [currentQueryParameters, setSearchParams] = useSearchParams();
     const newQueryParameters = new URLSearchParams();
 
-    const searchHandler = (event) => {
+    const searchHandler = () => {
+        newQueryParameters.set("limit", 10);
+        newQueryParameters.set("offset", 0);
         newQueryParameters.set("filter", inputRef.current.value);
+        dispatch(storeActions.changeSearch(inputRef.current.value));
         setSearchParams(newQueryParameters);
-        submit({ filter: inputRef.current.value }, { method: "GET" });
     };
 
     useEffect(() => {
