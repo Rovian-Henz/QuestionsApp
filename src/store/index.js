@@ -7,6 +7,7 @@ const initialState = {
     showInfoScreen: false,
     infoScreenMessage: "There was an error",
     typeInfo: "error",
+    offSet: 10,
 };
 
 const storeSlice = createSlice({
@@ -33,6 +34,9 @@ const storeSlice = createSlice({
             state.showInfoScreen = false;
             state.typeInfo = "error";
             state.infoScreenMessage = "There was an error";
+        },
+        changeOffSet(state) {
+            state.offSet = state.offSet + 10;
         },
     },
 });

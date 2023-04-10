@@ -79,6 +79,9 @@ export const Content = styled.div`
     gap: 25px;
     top: -45px;
     margin-bottom: 35px;
+    & .infinite-scroll-component {
+        padding: 0 10px;
+    }
 `;
 
 export const Item = styled.div`
@@ -87,6 +90,7 @@ export const Item = styled.div`
     border-radius: 10px;
     justify-content: space-between;
     gap: 25px;
+    margin-bottom: 25px;
     box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
     img {
         border-top-left-radius: 10px;

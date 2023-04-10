@@ -20,7 +20,6 @@ const StartPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    console.log("location", location);
     useEffect(() => {
         if (location.pathname === "/" || location.pathname === "") {
             return navigate("/questions");
