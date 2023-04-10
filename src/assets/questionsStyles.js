@@ -96,6 +96,15 @@ export const Item = styled.div`
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
     }
+    @media (max-width: 768px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img {
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    }
 `;
 
 export const ItemContent = styled.div`
@@ -106,6 +115,16 @@ export const ItemContent = styled.div`
     width: 100%;
     justify-content: space-between;
     padding: 15px 0;
+
+    @media (max-width: 768px) {
+        align-items: center;
+    }
+
+    @media (max-width: 500px) {
+        h3 {
+            text-align: center;
+        }
+    }
 `;
 
 export const ItemActions = styled.div`
@@ -125,6 +144,10 @@ export const OptionsList = styled.div`
     display: flex;
     gap: 22px;
     justify-content: flex-start;
+    @media (max-width: 500px) {
+        flex-direction: column;
+        gap: 5px;
+    }
 `;
 
 export const OptionsItem = styled.div`
@@ -165,6 +188,11 @@ export const SearchActions = styled.div`
     width: 920px;
     grid-template-columns: 1fr 40px;
     position: relative;
+    @media (max-width: 992px) {
+        width: auto;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
 `;
 
 export const SearchShare = styled.div`
@@ -173,5 +201,8 @@ export const SearchShare = styled.div`
         path {
             fill: #fff;
         }
+    }
+    @media (max-width: 992px) {
+        text-align: center;
     }
 `;

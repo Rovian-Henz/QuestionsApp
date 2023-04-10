@@ -4,7 +4,6 @@ import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { SubTitleH3, LoadingQuestions } from "../assets/globalStyles";
 import { QuestionContent } from "../assets/questionDetailStyles";
 import { Loading } from "../assets/icons";
-
 import {
     QuestionsContainer,
     Content,
@@ -81,7 +80,7 @@ const QuestionsList = () => {
                         {totalQuestions.length > 0 &&
                             totalQuestions.map((question, idx) => (
                                 <Item key={idx}>
-                                    <img src="https://dummyimage.com/120x120/000/fff.png&text=question+1+image+(120x120)" />
+                                    <img src={question.thumb_url} />
                                     <ItemContent>
                                         <SubTitleH3>
                                             {question.question}

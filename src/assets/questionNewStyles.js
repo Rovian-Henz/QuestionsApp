@@ -53,11 +53,17 @@ export const NewQuestionFormContainer = styled.div`
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     padding: 60px 80px;
+    @media (max-width: 992px) {
+        margin: 15px;
+    }
 `;
 
 export const NewQuestionFormContent = styled.div`
     display: grid;
     gap: 15px;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const Input = styled.input`
@@ -73,6 +79,9 @@ export const Input = styled.input`
 export const ChoicesContainer = styled.div`
     display: flex;
     gap: 10px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 export const NewQuestionActions = styled.div`

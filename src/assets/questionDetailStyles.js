@@ -30,6 +30,10 @@ export const VoteFormContent = styled.div`
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    @media (max-width: 992px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 export const VoteItems = styled.div`
@@ -38,6 +42,10 @@ export const VoteItems = styled.div`
     width: 100%;
     justify-content: space-around;
     flex: 1;
+    @media (max-width: 992px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 export const VoteItem = styled.div`
@@ -124,6 +132,10 @@ export const ResultList = styled.div`
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    @media (max-width: 992px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 export const ResultItem = styled.div`
@@ -171,4 +183,19 @@ export const TitleContainer = styled.div`
     position: relative;
     justify-content: center;
     align-items: center;
+    @media (max-width: 992px) {
+        grid-template-columns: 1fr;
+        margin-bottom: 35px;
+        & > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            & > div {
+                position: relative;
+                right: 0;
+                bottom: 0;
+            }
+        }
+    }
 `;
