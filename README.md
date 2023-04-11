@@ -1,6 +1,13 @@
 ## Requires
 Node and Npm
 
+
+## Installation
+
+You need to install the packages
+### `npm install`
+
+
 ## Available Scripts
 
 In the project directory, you can run:
